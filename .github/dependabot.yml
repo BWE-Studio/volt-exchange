@@ -1,0 +1,30 @@
+# Without this file Dependabot opens one PR per advisory per package. Across
+# BWE-Studio that produced 385 open PRs over 90 repos, dominated by the same
+# five transitives (postcss, nanoid, brace-expansion, js-yaml, @remix-run/router)
+# repeated per repo. Grouping collapses that into a handful of reviewable PRs.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+      dev-dependencies:
+        dependency-type: "development"
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+      production-dependencies:
+        dependency-type: "production"
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      actions:
+        patterns: ["*"]
