@@ -1,14 +1,17 @@
-# Without this file Dependabot opens one PR per advisory per package. Across
-# BWE-Studio that produced 385 open PRs over 90 repos, dominated by the same
-# five transitives (postcss, nanoid, brace-expansion, js-yaml, @remix-run/router)
-# repeated per repo. Grouping collapses that into a handful of reviewable PRs.
+# Without this file Dependabot opens one PR per package. Across BWE-Studio that
+# was 385 open PRs over 90 repos, dominated by the same five transitives.
+#
+# First attempt at this grouped only minor+patch, which left every major update
+# outside a group and therefore on its own PR -- that pushed the org to 830 open
+# PRs. Every update-type is grouped now, so a repo produces at most a handful of
+# PRs regardless of how far behind it is.
 version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     groups:
       security:
         applies-to: security-updates
@@ -16,15 +19,16 @@ updates:
       dev-dependencies:
         dependency-type: "development"
         patterns: ["*"]
-        update-types: ["minor", "patch"]
+        update-types: ["major", "minor", "patch"]
       production-dependencies:
         dependency-type: "production"
         patterns: ["*"]
-        update-types: ["minor", "patch"]
+        update-types: ["major", "minor", "patch"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
+    open-pull-requests-limit: 1
     groups:
       actions:
         patterns: ["*"]
