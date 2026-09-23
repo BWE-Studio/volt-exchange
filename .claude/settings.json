@@ -1,0 +1,15 @@
+{
+  "extraKnownMarketplaces": {
+    "bwe-arsenal": {
+      "source": {
+        "source": "github",
+        "repo": "BWE-Studio/bwe-arsenal"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "bwe-core@bwe-arsenal": true,
+    "bwe-build@bwe-arsenal": true,
+    "bwe-design@bwe-arsenal": true
+  }
+}
