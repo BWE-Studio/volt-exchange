@@ -6,15 +6,17 @@
      Every line should pass: "would removing this cause a mistake?" -->
 
 ## What this is
-One or two sentences: the product, who uses it, where it runs (e.g. Cloudflare Pages + Supabase).
+TODO: one or two sentences on what this product is and who uses it.
+Stack: Next.js, Tailwind.
 
 ## Commands
 - Install: `npm install`
-- Check everything before pushing: `npm run verify`
 - Dev server: `npm run dev`
+- Build: `npm run build`
+- Lint: `npm run lint`
 
 ## Rules that aren't obvious from the code
-- (Add conventions Claude got wrong twice. Delete this line when the first real rule lands.)
+- None recorded yet. Add a rule the second time Claude gets something wrong here.
 
 ## Never
 - Never commit or push with `--no-verify` (the bwe-core guard blocks it).
