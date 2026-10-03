@@ -5,13 +5,18 @@
 # outside a group and therefore on its own PR -- that pushed the org to 830 open
 # PRs. Every update-type is grouped now, so a repo produces at most a handful of
 # PRs regardless of how far behind it is.
+# 2026-10-04: majors are still grouped, but in their OWN groups. One combined
+# group meant a routine minor/patch bump could not merge because it rode with
+# major migrations in the same PR. Now: minor+patch groups merge on a green
+# gate; each "-majors" group is one PR that is a migration task, not a routine
+# bump. Still at most a handful of npm PRs.
 version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 3
+    open-pull-requests-limit: 4
     groups:
       security:
         applies-to: security-updates
@@ -19,11 +24,19 @@ updates:
       dev-dependencies:
         dependency-type: "development"
         patterns: ["*"]
-        update-types: ["major", "minor", "patch"]
+        update-types: ["minor", "patch"]
+      dev-dependencies-majors:
+        dependency-type: "development"
+        patterns: ["*"]
+        update-types: ["major"]
       production-dependencies:
         dependency-type: "production"
         patterns: ["*"]
-        update-types: ["major", "minor", "patch"]
+        update-types: ["minor", "patch"]
+      production-dependencies-majors:
+        dependency-type: "production"
+        patterns: ["*"]
+        update-types: ["major"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
