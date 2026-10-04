@@ -17,6 +17,12 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 4
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
       security:
         applies-to: security-updates
@@ -25,18 +31,10 @@ updates:
         dependency-type: "development"
         patterns: ["*"]
         update-types: ["minor", "patch"]
-      dev-dependencies-majors:
-        dependency-type: "development"
-        patterns: ["*"]
-        update-types: ["major"]
       production-dependencies:
         dependency-type: "production"
         patterns: ["*"]
         update-types: ["minor", "patch"]
-      production-dependencies-majors:
-        dependency-type: "production"
-        patterns: ["*"]
-        update-types: ["major"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
